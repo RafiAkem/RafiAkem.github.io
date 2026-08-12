@@ -202,7 +202,27 @@
   }
   #musicBtn[aria-pressed=true]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 
-  /* reveal */
+  /* ---------- dekorasi: daun jatuh + bunga (inline SVG, zero-dep) ---------- */
+  .fall-container{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+  .fall-container .leaf{
+    position:absolute;top:-40px;display:block;will-change:transform,opacity;
+    animation:leafFall linear infinite;opacity:0;
+  }
+  @keyframes leafFall{
+    0%{transform:translateY(-40px) translateX(0) rotate(0deg);opacity:0}
+    8%{opacity:var(--leaf-o,.75)}
+    100%{transform:translateY(105vh) translateX(var(--sway,40px)) rotate(var(--spin,300deg));opacity:0}
+  }
+  .deco-flower{
+    position:absolute;color:var(--accent);opacity:.5;pointer-events:none;
+    animation:floaty 6s ease-in-out infinite;
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .deco-flower.tl{top:0;left:0}.deco-flower.tr{top:0;right:0}
+  .deco-flower.bl{bottom:0;left:0}.deco-flower.br{bottom:0;right:0}
+  @media (prefers-reduced-motion:reduce){.fall-container{display:none}}
+
+  /* ---------- reveal ---------- */
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
   .reveal.in-view{opacity:1;transform:none}
 
@@ -217,8 +237,10 @@
 <!-- ================= COVER ================= -->
 <div id="cover">
   <div class="cover-frame">
-    <span class="mark tl">&#10022;</span><span class="mark tr">&#10022;</span>
-    <span class="mark bl">&#10022;</span><span class="mark br">&#10022;</span>
+    <svg class="deco-flower tl" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M22 6c2.8 0 4 2.6 4 5s-1.2 5-4 5-4-2.6-4-5 1.2-5 4-5Z"/><path d="M22 38c2.8 0 4-2.6 4-5s-1.2-5-4-5-4 2.6-4 5 1.2 5 4 5Z"/><path d="M6 22c0 2.8 2.6 4 5 4s5-1.2 5-4-2.6-4-5-4-5 1.2-5 4Z"/><path d="M38 22c0 2.8-2.6 4-5 4s-5-1.2-5-4 2.6-4 5-4 5 1.2 5 4Z"/><path d="M22 22m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0"/><path d="M14 14c1.2 3 4.4 4.2 8 4.2S26.8 17 28 14"/><path d="M14 30c1.2-3 4.4-4.2 8-4.2s6.8 1.2 8 4.2"/></g></svg>
+    <svg class="deco-flower tr" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M22 6c2.8 0 4 2.6 4 5s-1.2 5-4 5-4-2.6-4-5 1.2-5 4-5Z"/><path d="M22 38c2.8 0 4-2.6 4-5s-1.2-5-4-5-4 2.6-4 5 1.2 5 4 5Z"/><path d="M6 22c0 2.8 2.6 4 5 4s5-1.2 5-4-2.6-4-5-4-5 1.2-5 4Z"/><path d="M38 22c0 2.8-2.6 4-5 4s-5-1.2-5-4 2.6-4 5-4 5 1.2 5 4Z"/><path d="M22 22m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0"/><path d="M14 14c1.2 3 4.4 4.2 8 4.2S26.8 17 28 14"/><path d="M14 30c1.2-3 4.4-4.2 8-4.2s6.8 1.2 8 4.2"/></g></svg>
+    <svg class="deco-flower bl" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M22 6c2.8 0 4 2.6 4 5s-1.2 5-4 5-4-2.6-4-5 1.2-5 4-5Z"/><path d="M22 38c2.8 0 4-2.6 4-5s-1.2-5-4-5-4 2.6-4 5 1.2 5 4 5Z"/><path d="M6 22c0 2.8 2.6 4 5 4s5-1.2 5-4-2.6-4-5-4-5 1.2-5 4Z"/><path d="M38 22c0 2.8-2.6 4-5 4s-5-1.2-5-4 2.6-4 5-4 5 1.2 5 4Z"/><path d="M22 22m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0"/><path d="M14 14c1.2 3 4.4 4.2 8 4.2S26.8 17 28 14"/><path d="M14 30c1.2-3 4.4-4.2 8-4.2s6.8 1.2 8 4.2"/></g></svg>
+    <svg class="deco-flower br" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M22 6c2.8 0 4 2.6 4 5s-1.2 5-4 5-4-2.6-4-5 1.2-5 4-5Z"/><path d="M22 38c2.8 0 4-2.6 4-5s-1.2-5-4-5-4 2.6-4 5 1.2 5 4 5Z"/><path d="M6 22c0 2.8 2.6 4 5 4s5-1.2 5-4-2.6-4-5-4-5 1.2-5 4Z"/><path d="M38 22c0 2.8-2.6 4-5 4s-5-1.2-5-4 2.6-4 5-4 5 1.2 5 4Z"/><path d="M22 22m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0"/><path d="M14 14c1.2 3 4.4 4.2 8 4.2S26.8 17 28 14"/><path d="M14 30c1.2-3 4.4-4.2 8-4.2s6.8 1.2 8 4.2"/></g></svg>
     <div class="cover-eyebrow">Undangan Pernikahan</div>
     <div class="cover-names">Raka Pratama<br><span class="cover-amp">&amp;</span><br>Dinda Lestari</div>
     <div class="cover-date">Sabtu, 09 Januari 2027 &middot; Bandung</div>
@@ -370,6 +392,10 @@
 </main>
 
 <button id="musicBtn" type="button" aria-pressed="false" aria-label="Putar atau hentikan musik latar">&#9835; Musik</button>
+
+<!-- daun jatuh: di-render JS, satu per viewport kecil, pakai SVG inline (zero-dep) -->
+<div class="fall-container" id="fallContainer" aria-hidden="true"></div>
+
 <audio id="audio" loop preload="none">
   <!-- ponytail: ganti src dengan lagu request pasangan (placeholder SoundHelix) -->
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
@@ -448,6 +474,32 @@ document.querySelectorAll('.copy-btn').forEach((btn) => {
     }
   });
 });
+
+// ---- daun jatuh (zero-dep, SVG inline, JS-rendered) ----
+(function () {
+  const container = document.getElementById('fallContainer');
+  if (!container || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const LEAF_SVG = [
+    '<svg viewBox="0 0 24 24"><path d="M12 2C7.2 5.5 4.5 9.5 4.5 13.5a7.5 7.5 0 0 0 15 0C19.5 9.5 16.8 5.5 12 2z"/></svg>',
+    '<svg viewBox="0 0 24 24"><path d="M12 2c4 3 6.5 6.8 6.5 10.5 0 3.6-2.9 6.5-6.5 6.5s-6.5-2.9-6.5-6.5C5.5 8.8 8 5 12 2z"/></svg>',
+    '<svg viewBox="0 0 24 24"><path d="M12 3c3.8 2.5 6 5.8 6 9a6 6 0 0 1-12 0c0-3.2 2.2-6.5 6-9z"/></svg>'
+  ];
+  const COLORS = ['#a8842c', '#c9a94e', '#b99755', '#8a6b22'];
+  const count = Math.min(14, Math.max(6, Math.round(window.innerWidth / 70)));
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('span');
+    el.className = 'leaf';
+    const size = 12 + Math.random() * 10;
+    el.innerHTML = LEAF_SVG[i % LEAF_SVG.length].replace('<svg', '<svg width="' + size + '" height="' + size + '" fill="' + COLORS[i % COLORS.length] + '"');
+    el.style.left = (Math.random() * 100) + 'vw';
+    el.style.setProperty('--sway', (Math.random() * 90 - 45) + 'px');
+    el.style.setProperty('--spin', (Math.random() * 540 + 180) + 'deg');
+    el.style.setProperty('--leaf-o', (0.35 + Math.random() * 0.45).toFixed(2));
+    el.style.animationDuration = (9 + Math.random() * 10) + 's';
+    el.style.animationDelay = (Math.random() * 12) + 's';
+    container.appendChild(el);
+  }
+})();
 </script>
 </body>
 </html>
