@@ -220,6 +220,25 @@
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   .deco-flower.tl{top:0;left:0}.deco-flower.tr{top:0;right:0}
   .deco-flower.bl{bottom:0;left:0}.deco-flower.br{bottom:0;right:0}
+
+  /* ---------- pohon dekoratif (line-art botanical, zero-dep) ---------- */
+  .deco-tree{
+    position:fixed;bottom:0;color:var(--accent);opacity:.16;
+    pointer-events:none;z-index:0;width:min(34vh,300px);height:auto;
+  }
+  .deco-tree.left{left:-28px}
+  .deco-tree.right{right:-28px;transform:scaleX(-1)}
+  .deco-tree svg{width:100%;height:auto;display:block}
+  .deco-tree .sway{animation:treeSway 9s ease-in-out infinite;transform-origin:50% 100%}
+  @keyframes treeSway{0%,100%{transform:rotate(0deg)}50%{transform:rotate(2.2deg)}}
+  .deco-tree .float{animation:floaty 7s ease-in-out infinite}
+  @media (max-width:767px){.deco-tree{display:none}}
+  .tree-footer{
+    width:120px;height:auto;margin:36px auto 0;color:var(--accent);opacity:.5;display:block;
+  }
+  .tree-footer svg{width:100%;height:auto;display:block}
+  .tree-footer .sway{animation:treeSway 10s ease-in-out infinite;transform-origin:50% 100%}
+  @media (prefers-reduced-motion:reduce){.deco-tree .sway,.tree-footer .sway{animation:none}}
   @media (prefers-reduced-motion:reduce){.fall-container{display:none}}
 
   /* ---------- reveal ---------- */
@@ -386,12 +405,56 @@
     <p class="tutup reveal">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kedua mempelai.</p>
     <div class="nama reveal">Raka &amp; Dinda</div>
     <div class="tgl reveal">Sabtu, 09 Januari 2027</div>
+    <svg class="tree-footer" viewBox="0 0 120 200" fill="none" aria-hidden="true">
+      <g class="sway" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none">
+        <path d="M60 200V96"/>
+        <path d="M60 150c-18-6-32-14-44-26"/>
+        <path d="M60 118c-22 2-40-4-52-16"/>
+        <path d="M60 92c-14-12-24-24-30-40"/>
+        <path d="M60 150c18-6 32-14 44-26"/>
+        <path d="M60 118c22 2 40-4 52-16"/>
+        <path d="M60 92c14-12 24-24 30-40"/>
+        <path d="M60 70c0-12 2-22 8-32"/>
+        <path d="M60 66c-10-6-16-14-18-26"/>
+        <path d="M60 64c10-8 18-16 24-28"/>
+      </g>
+    </svg>
     <div class="credit reveal">Dibuat dengan sepenuh cinta oleh [Nama Studio]</div>
   </footer>
 
 </main>
 
 <button id="musicBtn" type="button" aria-pressed="false" aria-label="Putar atau hentikan musik latar">&#9835; Musik</button>
+
+<!-- pohon dekoratif: sisi kiri/kanan (desktop) + footer -->
+<svg class="deco-tree left" viewBox="0 0 120 200" fill="none" aria-hidden="true">
+  <g class="sway" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none">
+    <path d="M60 200V96"/>
+    <path d="M60 150c-18-6-32-14-44-26"/>
+    <path d="M60 118c-22 2-40-4-52-16"/>
+    <path d="M60 92c-14-12-24-24-30-40"/>
+    <path d="M60 150c18-6 32-14 44-26"/>
+    <path d="M60 118c22 2 40-4 52-16"/>
+    <path d="M60 92c14-12 24-24 30-40"/>
+    <path d="M60 70c0-12 2-22 8-32"/>
+    <path d="M60 66c-10-6-16-14-18-26"/>
+    <path d="M60 64c10-8 18-16 24-28"/>
+  </g>
+</svg>
+<svg class="deco-tree right" viewBox="0 0 120 200" fill="none" aria-hidden="true">
+  <g class="sway" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none">
+    <path d="M60 200V96"/>
+    <path d="M60 150c-18-6-32-14-44-26"/>
+    <path d="M60 118c-22 2-40-4-52-16"/>
+    <path d="M60 92c-14-12-24-24-30-40"/>
+    <path d="M60 150c18-6 32-14 44-26"/>
+    <path d="M60 118c22 2 40-4 52-16"/>
+    <path d="M60 92c14-12 24-24 30-40"/>
+    <path d="M60 70c0-12 2-22 8-32"/>
+    <path d="M60 66c-10-6-16-14-18-26"/>
+    <path d="M60 64c10-8 18-16 24-28"/>
+  </g>
+</svg>
 
 <!-- daun jatuh: di-render JS, satu per viewport kecil, pakai SVG inline (zero-dep) -->
 <div class="fall-container" id="fallContainer" aria-hidden="true"></div>
